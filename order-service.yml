@@ -1,0 +1,46 @@
+# File: microservices-config-repo/order-service.yml
+
+# --------------------
+# MYSQL DATABASE CONFIGURATION (Externalized)
+# --------------------
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/order_service
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+# --------------------
+# Resilience4j Circuit Breaker Configuration (Externalized)
+# --------------------
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 60s
+    instances:
+      external-service-breaker:
+        base-config: default
+        registerHealthIndicator: true
+
+# --------------------
+# Actuator Configuration (Externalized)
+# NOTE: We keep this here to ensure exposure is set correctly via the Config Server
+# --------------------
+management:
+  endpoints:
+    web:
+      exposure:
+        # We use '*' for the best compatibility and to include circuitbreakers
+        include: "*"
