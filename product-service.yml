@@ -1,8 +1,6 @@
-# File: microservices-config-repo/product-service.yml
+server:
+  port: 8082  # Product Service runs on 8082
 
-# --------------------
-# MYSQL DATABASE CONFIGURATION (Externalized)
-# --------------------
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/product_service
@@ -12,8 +10,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
         dialect: org.hibernate.dialect.MySQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
