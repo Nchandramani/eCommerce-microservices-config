@@ -1,21 +1,4 @@
-# File: microservices-config-repo/api-gateway.yml
-
-# --------------------
-# ROUTING RULES (Externalized)
-# --------------------
-spring:
-  cloud:
-    gateway:
-      routes:
-        - id: user-service
-          uri: http://localhost:8081
-          predicates:
-            - Path=/api/users/**
-        - id: product-service
-          uri: http://localhost:8082
-          predicates:
-            - Path=/api/products/**
-        - id: order-service
-          uri: http://localhost:8083
-          predicates:
-            - Path=/api/orders/**
+server.port=8080
+spring.cloud.gateway.discovery.locator.enabled=true
+spring.cloud.gateway.discovery.locator.lower-case-service-id=true
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
