@@ -1,19 +1,24 @@
-# File: microservices-config-repo/user-service.yml
+server:
+  port: 8081
 
-# --------------------
-# MYSQL DATABASE CONFIGURATION (Externalized)
-# --------------------
 spring:
   datasource:
+    # 'createDatabaseIfNotExist=true' will create the DB for you automatically
     url: jdbc:mysql://localhost:3306/user_service
     username: root
-    password: root
+    password: root  
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: true
     properties:
       hibernate:
-        format_sql: true
+        # Spring Boot 3 automatically detects the correct MySQL dialect, 
+        # but you can force it here if needed:
         dialect: org.hibernate.dialect.MySQLDialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
