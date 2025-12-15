@@ -8,12 +8,6 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://dev-c7i0iffxgdsevmxf.us.auth0.com/
-          audiences: https://ecommerce-microservices
 
 eureka:
   client:
