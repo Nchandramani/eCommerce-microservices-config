@@ -8,6 +8,12 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Point to your local Keycloak Realm
+          issuer-uri: http://localhost:8181/realms/ecommerce-realm
 
 eureka:
   client:
