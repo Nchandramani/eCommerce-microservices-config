@@ -12,7 +12,6 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          # Point to your local Keycloak Realm
           issuer-uri: http://localhost:8181/realms/ecommerce-realm
 
 eureka:
@@ -23,7 +22,7 @@ eureka:
 management:
   tracing:
     sampling:
-      probability: 1.0   # trace every request (perfect for learning)
+      probability: 1.0 
 
   zipkin:
     tracing:
