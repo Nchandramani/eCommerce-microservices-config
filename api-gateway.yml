@@ -3,8 +3,7 @@ server:
 
 spring:
   application:
-    name: api-gateway
-
+    name: API-GATEWAY
   cloud:
     gateway:
       routes:
@@ -21,14 +20,14 @@ spring:
         - id: product-service
           uri: lb://PRODUCT-SERVICE
           predicates:
-            - Path=/products/**
-
+            - Path=/products/**  
   security:
     oauth2:
       resourceserver:
         jwt:
-          # IMPORTANT: use Keycloak service name, not localhost
-          issuer-uri: http://keycloak:8080/realms/ecommerce-realm
+          issuer-uri: http://localhost:8181/realms/ecommerce-realm
+  
+            
 
 eureka:
   instance:
@@ -36,9 +35,8 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-    # IMPORTANT: use Eureka container name
     service-url:
-      defaultZone: http://eureka-server:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
 management:
   endpoints:
