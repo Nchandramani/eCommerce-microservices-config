@@ -4,12 +4,22 @@ server:
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      default-filters:
-        - StripPrefix=1    
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/users/**
+
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/orders/**
+
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/products/**
+
   security:
     oauth2:
       resourceserver:
@@ -24,7 +34,7 @@ eureka:
 management:
   tracing:
     sampling:
-      probability: 1.0 
+      probability: 1.0
 
   zipkin:
     tracing:
