@@ -2,11 +2,15 @@ server:
   port: 8083
 
 spring:
+  application:
+    name: ORDER-SERVICE
+
   datasource:
     url: jdbc:mysql://localhost:3306/order_service
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,6 +28,9 @@ spring:
         spring.json.type.mapping: event:com.chadramani.order_service.event.OrderPlacedEvent
 
 eureka:
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
@@ -44,7 +51,7 @@ resilience4j:
 management:
   tracing:
     sampling:
-      probability: 1.0  
+      probability: 1.0
 
   zipkin:
     tracing:
@@ -54,5 +61,3 @@ management:
     web:
       exposure:
         include: health,info
-
-        
