@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: API-GATEWAY   # IMPORTANT (do not skip)
+    name: API-GATEWAY
 
   cloud:
     gateway:
@@ -24,6 +24,8 @@ spring:
             - Path=/products/**
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
