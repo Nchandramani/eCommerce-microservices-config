@@ -6,25 +6,21 @@ spring:
     name: PRODUCT-SERVICE
 
   datasource:
-    url: jdbc:mysql://user-mysql:3306/user_db
+    url: jdbc:mysql://product-mysql:3306/product_db
     username: root
     password: root
 
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
 
 eureka:
-  instance:
-    prefer-ip-address: true
-    ip-address: 127.0.0.1
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://eureka-server:8761/eureka/
 
 management:
   tracing:
@@ -33,7 +29,7 @@ management:
 
   zipkin:
     tracing:
-      endpoint: http://localhost:9411/api/v2/spans
+      endpoint: http://zipkin:9411/api/v2/spans
 
   endpoints:
     web:
